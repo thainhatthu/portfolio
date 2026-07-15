@@ -1,676 +1,2133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thai Nhat Thu — IT Business Analyst</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#EEEEE6;
-    --paper-deep:#E4E3D8;
-    --card:#FFFFFF;
-    --ink:#182029;
-    --slate:#5A6570;
-    --line:#D4D2C6;
-    --blue:#2C5C86;
-    --blue-deep:#1D3F5C;
-    --amber:#DB9A3C;
-    --amber-soft:#F2E1BE;
-    --font-display:'Space Grotesk', sans-serif;
-    --font-body:'IBM Plex Sans', sans-serif;
-    --font-mono:'IBM Plex Mono', monospace;
-    --maxw:1120px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
-  }
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:var(--font-body);
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-  }
-  img{max-width:100%; display:block;}
-  a{color:inherit;}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
-  .mono{font-family:var(--font-mono);}
-  .eyebrow{
-    font-family:var(--font-mono);
-    font-size:12px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:var(--blue-deep);
-  }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thai Nhat Thu — IT Business Analyst</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #eeeee6;
+        --paper-deep: #e4e3d8;
+        --card: #ffffff;
+        --ink: #182029;
+        --slate: #5a6570;
+        --line: #d4d2c6;
+        --blue: #2c5c86;
+        --blue-deep: #1d3f5c;
+        --amber: #db9a3c;
+        --amber-soft: #f2e1be;
+        --font-display: "Space Grotesk", sans-serif;
+        --font-body: "IBM Plex Sans", sans-serif;
+        --font-mono: "IBM Plex Mono", monospace;
+        --maxw: 1120px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--font-body);
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: inherit;
+      }
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+      .mono {
+        font-family: var(--font-mono);
+      }
+      .eyebrow {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--blue-deep);
+      }
 
-  /* ---------- NAV ---------- */
-  .topbar{
-    position:sticky; top:0; z-index:50;
-    background:rgba(238,238,230,.88);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line);
-  }
-  .topbar-inner{
-    max-width:var(--maxw); margin:0 auto; padding:14px 28px;
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  .brandmark{
-    display:flex; align-items:center; gap:10px;
-    font-family:var(--font-mono); font-weight:500; font-size:14px;
-  }
-  .brandmark .box{
-    width:28px; height:28px; border:1.5px solid var(--ink);
-    border-radius:6px; display:flex; align-items:center; justify-content:center;
-    font-size:11px; font-weight:600;
-  }
-  .navlinks{display:flex; gap:26px; font-size:14px;}
-  .navlinks a{text-decoration:none; color:var(--slate); position:relative;}
-  .navlinks a:hover{color:var(--ink);}
-  .navlinks a:focus-visible, .btn:focus-visible, .chip a:focus-visible{outline:2px solid var(--blue); outline-offset:3px;}
-  .status-pill{
-    font-family:var(--font-mono); font-size:11px; letter-spacing:.04em;
-    background:var(--blue-deep); color:#fff; padding:5px 10px; border-radius:100px;
-    display:inline-flex; align-items:center; gap:6px;
-  }
-  .status-pill::before{content:""; width:6px; height:6px; border-radius:50%; background:#7FD98A; display:block;}
-  .navtoggle{display:none; background:none; border:1px solid var(--line); border-radius:6px; padding:6px 10px; font-family:var(--font-mono); cursor:pointer;}
+      /* ---------- NAV ---------- */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(238, 238, 230, 0.88);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+      .topbar-inner {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 14px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brandmark {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-mono);
+        font-weight: 500;
+        font-size: 14px;
+      }
+      .brandmark .box {
+        width: 28px;
+        height: 28px;
+        border: 1.5px solid var(--ink);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 600;
+      }
+      .navlinks {
+        display: flex;
+        gap: 26px;
+        font-size: 14px;
+      }
+      .navlinks a {
+        text-decoration: none;
+        color: var(--slate);
+        position: relative;
+      }
+      .navlinks a:hover {
+        color: var(--ink);
+      }
+      .navlinks a:focus-visible,
+      .btn:focus-visible,
+      .chip a:focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: 3px;
+      }
+      .status-pill {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        background: var(--blue-deep);
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 100px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .status-pill::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #7fd98a;
+        display: block;
+      }
+      .navtoggle {
+        display: none;
+        background: none;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 6px 10px;
+        font-family: var(--font-mono);
+        cursor: pointer;
+        color: var(--ink);
+      }
+      .navtoggle svg {
+        width: 16px;
+        height: 16px;
+        display: block;
+      }
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        gap: 2px;
+        border-top: 1px solid var(--line);
+        background: var(--paper);
+        padding: 6px 28px 14px;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        text-decoration: none;
+        color: var(--slate);
+        font-size: 14.5px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .mobile-menu a:last-child {
+        border-bottom: none;
+      }
+      .mobile-menu a:hover {
+        color: var(--ink);
+      }
 
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative; padding:64px 0 56px;
-    background-image:
-      linear-gradient(var(--paper-deep) 1px, transparent 1px),
-      linear-gradient(90deg, var(--paper-deep) 1px, transparent 1px);
-    background-size:34px 34px;
-    background-position:center top;
-    border-bottom:1px solid var(--line);
-    overflow:hidden;
-  }
-  .doc-header{
-    display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center;
-    font-family:var(--font-mono); font-size:12px; color:var(--slate);
-    border:1px solid var(--line); background:var(--card);
-    padding:10px 16px; border-radius:8px; margin-bottom:34px;
-    max-width:fit-content;
-  }
-  .doc-header span{white-space:nowrap;}
-  .doc-header b{color:var(--ink);}
-  .hero-grid{display:flex; gap:48px; align-items:flex-end; flex-wrap:wrap;}
-  .hero-main{flex:1 1 480px;}
-  h1.name{
-    font-family:var(--font-display);
-    font-size:clamp(38px, 6vw, 64px);
-    font-weight:700; line-height:1.02; margin:0 0 6px;
-    letter-spacing:-.01em;
-  }
-  .role-line{
-    font-family:var(--font-display); font-weight:500;
-    font-size:clamp(18px,2.4vw,24px); color:var(--blue-deep); margin:0 0 20px;
-  }
-  .objective{max-width:56ch; color:var(--slate); font-size:16px; margin-bottom:26px;}
-  .hero-cta{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:26px;}
-  .btn{
-    font-family:var(--font-mono); font-size:13px; text-decoration:none;
-    padding:11px 18px; border-radius:7px; display:inline-flex; align-items:center; gap:8px;
-    transition:transform .15s ease, box-shadow .15s ease;
-  }
-  .btn-primary{background:var(--ink); color:#fff;}
-  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 6px 14px rgba(0,0,0,.18);}
-  .btn-ghost{border:1px solid var(--ink); color:var(--ink); background:transparent;}
-  .btn-ghost:hover{background:var(--ink); color:#fff;}
-  .contact-row{display:flex; flex-wrap:wrap; gap:18px; font-size:13px; font-family:var(--font-mono); color:var(--slate);}
-  .contact-row a{text-decoration:none; display:flex; align-items:center; gap:6px;}
-  .contact-row a:hover{color:var(--blue-deep);}
-  .contact-row svg{width:15px; height:15px; flex-shrink:0;}
+      /* ---------- HERO ---------- */
+      .hero {
+        position: relative;
+        padding: 64px 0 56px;
+        background-image:
+          linear-gradient(var(--paper-deep) 1px, transparent 1px),
+          linear-gradient(90deg, var(--paper-deep) 1px, transparent 1px);
+        background-size: 34px 34px;
+        background-position: center top;
+        border-bottom: 1px solid var(--line);
+        overflow: hidden;
+      }
+      .doc-header {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+        align-items: center;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--slate);
+        border: 1px solid var(--line);
+        background: var(--card);
+        padding: 10px 16px;
+        border-radius: 8px;
+        margin-bottom: 34px;
+        max-width: fit-content;
+      }
+      .doc-header span {
+        white-space: nowrap;
+      }
+      .doc-header b {
+        color: var(--ink);
+      }
+      .hero-grid {
+        display: flex;
+        gap: 56px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .hero-main {
+        flex: 1 1 480px;
+      }
+      h1.name {
+        font-family: var(--font-display);
+        font-size: clamp(38px, 6vw, 64px);
+        font-weight: 700;
+        line-height: 1.02;
+        margin: 0 0 6px;
+        letter-spacing: -0.01em;
+      }
+      .role-line {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(18px, 2.4vw, 24px);
+        color: var(--blue-deep);
+        margin: 0 0 20px;
+      }
+      .objective {
+        max-width: 56ch;
+        color: var(--slate);
+        font-size: 16px;
+        margin-bottom: 26px;
+      }
+      .hero-cta {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 26px;
+      }
+      .btn {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        text-decoration: none;
+        padding: 11px 18px;
+        border-radius: 7px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+      .btn-primary {
+        background: var(--ink);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+      }
+      .btn-ghost {
+        border: 1px solid var(--ink);
+        color: var(--ink);
+        background: transparent;
+      }
+      .btn-ghost:hover {
+        background: var(--ink);
+        color: #fff;
+      }
+      .contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        font-size: 13px;
+        font-family: var(--font-mono);
+        color: var(--slate);
+      }
+      .contact-row a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .contact-row a:hover {
+        color: var(--blue-deep);
+      }
+      .contact-row svg {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+      }
 
-  .avatar-card{
-    flex:0 0 auto; width:200px; height:200px; border-radius:14px;
-    background:var(--blue-deep); color:#F2EFE4;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    font-family:var(--font-display); position:relative; border:1px solid var(--line);
-    box-shadow:0 14px 30px rgba(20,40,60,.18);
-  }
-  .avatar-card .initials{font-size:52px; font-weight:700; letter-spacing:-.02em;}
-  .avatar-card .tag{font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; opacity:.75; margin-top:6px; text-transform:uppercase;}
-  .avatar-card .corner{position:absolute; width:9px; height:9px; border:2px solid var(--amber);}
-  .avatar-card .c1{top:10px; left:10px; border-right:none; border-bottom:none;}
-  .avatar-card .c2{bottom:10px; right:10px; border-left:none; border-top:none;}
+      .avatar-card {
+        flex: 0 0 auto;
+        width: 252px;
+        height: 252px;
+        border-radius: 18px;
+        background: var(--blue-deep);
+        color: #f2efe4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        position: relative;
+        border: 1px solid var(--line);
+        box-shadow: 0 18px 36px rgba(20, 40, 60, 0.2);
+      }
+      .avatar-card .initials {
+        font-size: 64px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .avatar-card .tag {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        opacity: 0.75;
+        margin-top: 8px;
+        text-transform: uppercase;
+      }
+      .avatar-card .corner {
+        position: absolute;
+        width: 11px;
+        height: 11px;
+        border: 2px solid var(--amber);
+      }
+      .avatar-card .c1 {
+        top: 12px;
+        left: 12px;
+        border-right: none;
+        border-bottom: none;
+      }
+      .avatar-card .c2 {
+        bottom: 12px;
+        right: 12px;
+        border-left: none;
+        border-top: none;
+      }
 
-  /* ---------- SECTION SHELL ---------- */
-  .section{padding:76px 0;}
-  .section-head{margin-bottom:40px; max-width:64ch;}
-  .section-head h2{
-    font-family:var(--font-display); font-size:clamp(26px,3.4vw,36px);
-    margin:8px 0 10px; font-weight:600;
-  }
-  .section-head p{color:var(--slate); font-size:15.5px; margin:0;}
+      /* ---------- SECTION SHELL ---------- */
+      .section {
+        padding: 76px 0;
+      }
+      .section-head {
+        margin-bottom: 40px;
+        max-width: 64ch;
+      }
+      .section-head h2 {
+        font-family: var(--font-display);
+        font-size: clamp(26px, 3.4vw, 36px);
+        margin: 8px 0 10px;
+        font-weight: 600;
+      }
+      .section-head p {
+        color: var(--slate);
+        font-size: 15.5px;
+        margin: 0;
+      }
 
-  /* ---------- SIGNATURE FLOW ---------- */
-  .flow-section{background:var(--paper-deep); border-bottom:1px solid var(--line);}
-  .flow-track{
-    display:flex; align-items:stretch; gap:0; overflow-x:auto; padding:10px 2px 20px;
-    scrollbar-width:thin;
-  }
-  .flow-node{
-    flex:0 0 200px; background:var(--card); border:1px solid var(--line); border-radius:10px;
-    padding:16px 14px; position:relative; opacity:0; transform:translateY(14px);
-    transition:opacity .5s ease, transform .5s ease;
-  }
-  .flow-node.in-view{opacity:1; transform:translateY(0);}
-  .flow-node .seq{font-family:var(--font-mono); font-size:11px; color:var(--blue); letter-spacing:.06em;}
-  .flow-node .when{font-family:var(--font-mono); font-size:11px; color:var(--slate); margin-top:2px;}
-  .flow-node h3{font-family:var(--font-display); font-size:16px; margin:10px 0 4px;}
-  .flow-node p{font-size:12.5px; color:var(--slate); margin:0;}
-  .flow-node.target{border-style:dashed; background:transparent;}
-  .flow-node.target h3{color:var(--amber);}
-  .flow-connector{
-    flex:0 0 46px; display:flex; align-items:center; justify-content:center; position:relative;
-  }
-  .flow-connector::before{
-    content:""; width:100%; height:2px; background:var(--line);
-  }
-  .flow-connector::after{
-    content:""; position:absolute; right:4px; width:0; height:0;
-    border-top:5px solid transparent; border-bottom:5px solid transparent;
-    border-left:7px solid var(--line);
-  }
-  @media (max-width: 720px){
-    .flow-track{flex-direction:column; overflow-x:visible;}
-    .flow-node{flex:1 1 auto;}
-    .flow-connector{flex:0 0 32px;}
-    .flow-connector::before{width:2px; height:100%;}
-    .flow-connector::after{
-      right:auto; top:auto; bottom:2px;
-      border-left:5px solid transparent; border-right:5px solid transparent; border-top:7px solid var(--line); border-left-width:5px;
-    }
-  }
+      /* ---------- SIGNATURE FLOW ---------- */
+      .flow-section {
+        background: var(--paper-deep);
+        border-bottom: 1px solid var(--line);
+      }
+      .flow-track {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+        overflow-x: auto;
+        padding: 10px 2px 20px;
+        scrollbar-width: thin;
+      }
+      .flow-node {
+        flex: 0 0 200px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 16px 14px;
+        position: relative;
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .flow-node.in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .flow-node .seq {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--blue);
+        letter-spacing: 0.06em;
+      }
+      .flow-node .when {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--slate);
+        margin-top: 2px;
+      }
+      .flow-node h3 {
+        font-family: var(--font-display);
+        font-size: 16px;
+        margin: 10px 0 4px;
+      }
+      .flow-node p {
+        font-size: 12.5px;
+        color: var(--slate);
+        margin: 0;
+      }
+      .flow-node.target {
+        border-style: dashed;
+        background: transparent;
+      }
+      .flow-node.target h3 {
+        color: var(--amber);
+      }
+      .flow-connector {
+        flex: 0 0 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .flow-connector::before {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background: var(--line);
+      }
+      .flow-connector::after {
+        content: "";
+        position: absolute;
+        right: 4px;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 7px solid var(--line);
+      }
+      @media (max-width: 720px) {
+        .flow-track {
+          flex-direction: column;
+          overflow-x: visible;
+        }
+        .flow-node {
+          flex: 1 1 auto;
+        }
+        .flow-connector {
+          flex: 0 0 32px;
+        }
+        .flow-connector::before {
+          width: 2px;
+          height: 100%;
+        }
+        .flow-connector::after {
+          right: auto;
+          top: auto;
+          bottom: 2px;
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-top: 7px solid var(--line);
+          border-left-width: 5px;
+        }
+      }
 
-  /* ---------- EXPERIENCE ---------- */
-  .exp-list{position:relative; padding-left:34px;}
-  .exp-list::before{content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px; background:var(--line);}
-  .exp-item{
-    position:relative; padding-bottom:44px; opacity:0; transform:translateY(16px);
-    transition:opacity .5s ease, transform .5s ease;
-  }
-  .exp-item.in-view{opacity:1; transform:translateY(0);}
-  .exp-item:last-child{padding-bottom:0;}
-  .exp-item::before{
-    content:""; position:absolute; left:-29px; top:4px; width:12px; height:12px;
-    border-radius:50%; background:var(--blue); border:3px solid var(--paper);
-    box-shadow:0 0 0 1px var(--blue);
-  }
-  .exp-tag{font-family:var(--font-mono); font-size:11.5px; color:var(--blue-deep); letter-spacing:.05em;}
-  .exp-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 14px; margin-top:4px;}
-  .exp-head h3{font-family:var(--font-display); font-size:20px; margin:0; font-weight:600;}
-  .exp-head .when{font-family:var(--font-mono); font-size:12.5px; color:var(--slate); margin-left:auto;}
-  .exp-org{color:var(--slate); font-size:14px; margin:2px 0 12px;}
-  .exp-item ul{margin:0; padding-left:18px; display:grid; gap:8px;}
-  .exp-item li{font-size:14.5px; color:var(--ink);}
-  .exp-item li b{color:var(--blue-deep);}
+      /* ---------- EXPERIENCE ---------- */
+      .exp-list {
+        position: relative;
+        padding-left: 34px;
+      }
+      .exp-list::before {
+        content: "";
+        position: absolute;
+        left: 9px;
+        top: 6px;
+        bottom: 6px;
+        width: 2px;
+        background: var(--line);
+      }
+      .exp-item {
+        position: relative;
+        padding-bottom: 44px;
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .exp-item.in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .exp-item:last-child {
+        padding-bottom: 0;
+      }
+      .exp-item::before {
+        content: "";
+        position: absolute;
+        left: -29px;
+        top: 4px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--blue);
+        border: 3px solid var(--paper);
+        box-shadow: 0 0 0 1px var(--blue);
+      }
+      .exp-tag {
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        color: var(--blue-deep);
+        letter-spacing: 0.05em;
+      }
+      .exp-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 8px 14px;
+        margin-top: 4px;
+      }
+      .exp-head h3 {
+        font-family: var(--font-display);
+        font-size: 20px;
+        margin: 0;
+        font-weight: 600;
+      }
+      .exp-head .when {
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        color: var(--slate);
+        margin-left: auto;
+      }
+      .exp-org {
+        color: var(--slate);
+        font-size: 14px;
+        margin: 2px 0 12px;
+      }
+      .exp-item ul {
+        margin: 0;
+        padding-left: 18px;
+        display: grid;
+        gap: 8px;
+      }
+      .exp-item li {
+        font-size: 14.5px;
+        color: var(--ink);
+      }
+      .exp-item li b {
+        color: var(--blue-deep);
+      }
 
-  /* ---------- PROJECTS ---------- */
-  .proj-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:26px;}
-  @media (max-width:760px){.proj-grid{grid-template-columns:1fr;}}
-  .proj-card{
-    background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden;
-    display:flex; flex-direction:column; opacity:0; transform:translateY(16px);
-    transition:opacity .5s ease, transform .5s ease, box-shadow .2s ease, border-color .2s ease;
-  }
-  .proj-card.in-view{opacity:1; transform:translateY(0);}
-  .proj-card:hover{box-shadow:0 16px 30px rgba(20,40,60,.12); border-color:var(--blue);}
-  .proj-media{position:relative; aspect-ratio:16/10; background:var(--paper-deep); overflow:hidden;}
-  .proj-media img{width:100%; height:100%; object-fit:cover;}
-  .proj-badge{
-    position:absolute; top:10px; left:10px; font-family:var(--font-mono); font-size:11px;
-    background:rgba(24,32,41,.82); color:#fff; padding:4px 9px; border-radius:100px;
-  }
-  .proj-body{padding:20px 20px 22px; display:flex; flex-direction:column; gap:12px; flex:1;}
-  .proj-title-row{display:flex; justify-content:space-between; gap:10px; align-items:baseline;}
-  .proj-title-row h3{font-family:var(--font-display); font-size:18px; margin:0;}
-  .proj-when{font-family:var(--font-mono); font-size:11.5px; color:var(--slate); white-space:nowrap;}
-  .proj-body ul{margin:0; padding-left:16px; display:grid; gap:6px;}
-  .proj-body li{font-size:13.5px; color:var(--slate);}
-  .proj-tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:auto;}
-  .tag-chip{
-    font-family:var(--font-mono); font-size:11px; padding:4px 9px; border-radius:100px;
-    background:var(--paper-deep); color:var(--blue-deep); border:1px solid var(--line);
-  }
-  .proj-links{display:flex; gap:10px; margin-top:2px;}
-  .proj-links a{font-family:var(--font-mono); font-size:12px; text-decoration:none; color:var(--blue); border-bottom:1px solid var(--blue);}
-  .proj-links a:hover{color:var(--blue-deep); border-color:var(--blue-deep);}
-  .placeholder-note{
-    font-family:var(--font-mono); font-size:10.5px; color:#fff; background:rgba(24,32,41,.55);
-    position:absolute; bottom:8px; right:8px; padding:3px 8px; border-radius:100px;
-  }
+      /* ---------- PROJECTS ---------- */
+      .proj-subhead {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        margin: 0 0 20px;
+        padding-top: 6px;
+      }
+      .proj-subhead:not(:first-of-type) {
+        margin-top: 56px;
+      }
+      .proj-subhead h3 {
+        font-family: var(--font-display);
+        font-size: 20px;
+        margin: 0;
+        font-weight: 600;
+      }
+      .proj-subhead .count {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--slate);
+        border: 1px solid var(--line);
+        border-radius: 100px;
+        padding: 2px 10px;
+        background: var(--card);
+      }
+      .proj-subnote {
+        color: var(--slate);
+        font-size: 14px;
+        margin: -12px 0 22px;
+        max-width: 60ch;
+      }
+      .proj-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 26px;
+      }
+      @media (max-width: 760px) {
+        .proj-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .proj-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease,
+          box-shadow 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .proj-card.in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .proj-card:hover {
+        box-shadow: 0 16px 30px rgba(20, 40, 60, 0.12);
+        border-color: var(--blue);
+      }
+      .proj-media {
+        position: relative;
+        aspect-ratio: 16/10;
+        background: var(--paper-deep);
+        overflow: hidden;
+      }
+      .proj-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .proj-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        background: rgba(24, 32, 41, 0.82);
+        color: #fff;
+        padding: 4px 9px;
+        border-radius: 100px;
+      }
+      .proj-body {
+        padding: 20px 20px 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        flex: 1;
+      }
+      .proj-title-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: baseline;
+      }
+      .proj-title-row h3 {
+        font-family: var(--font-display);
+        font-size: 18px;
+        margin: 0;
+      }
+      .proj-when {
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        color: var(--slate);
+        white-space: nowrap;
+      }
+      .proj-body ul {
+        margin: 0;
+        padding-left: 16px;
+        display: grid;
+        gap: 6px;
+      }
+      .proj-body li {
+        font-size: 13.5px;
+        color: var(--slate);
+      }
+      .proj-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: auto;
+      }
+      .tag-chip {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        padding: 4px 9px;
+        border-radius: 100px;
+        background: var(--paper-deep);
+        color: var(--blue-deep);
+        border: 1px solid var(--line);
+      }
+      .proj-links {
+        display: flex;
+        gap: 14px;
+        margin-top: 2px;
+      }
+      .proj-links a {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        text-decoration: none;
+        color: var(--blue);
+        border-bottom: 1px solid var(--blue);
+      }
+      .proj-links a:hover {
+        color: var(--blue-deep);
+        border-color: var(--blue-deep);
+      }
+      .placeholder-note {
+        font-family: var(--font-mono);
+        font-size: 10.5px;
+        color: #fff;
+        background: rgba(24, 32, 41, 0.55);
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        padding: 3px 8px;
+        border-radius: 100px;
+      }
+      .case-cta {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 4px;
+      }
+      .case-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        color: var(--blue-deep);
+        background: var(--paper-deep);
+        border: 1px solid var(--line);
+        border-radius: 100px;
+        padding: 8px 15px 8px 16px;
+        cursor: pointer;
+        transition:
+          background 0.18s ease,
+          border-color 0.18s ease,
+          color 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+      .case-btn .arrow {
+        transition: transform 0.18s ease;
+      }
+      .case-btn:hover {
+        background: var(--card);
+        border-color: var(--blue);
+        color: var(--blue-deep);
+        box-shadow: 0 4px 12px rgba(44, 92, 134, 0.14);
+      }
+      .case-btn:hover .arrow {
+        transform: translateX(3px);
+      }
+      .case-btn:focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: 2px;
+      }
 
-  /* ---------- SKILLS ---------- */
-  .skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
-  @media (max-width:860px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
-  @media (max-width:560px){.skills-grid{grid-template-columns:1fr;}}
-  .skill-box{
-    border:1px solid var(--line); background:var(--card); border-radius:12px; padding:18px;
-  }
-  .skill-box .legend-key{
-    display:flex; align-items:center; gap:8px; margin-bottom:12px;
-    font-family:var(--font-mono); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--slate);
-  }
-  .legend-dot{width:9px; height:9px; border-radius:2px; flex-shrink:0;}
-  .skill-chips{display:flex; flex-wrap:wrap; gap:7px;}
-  .skill-chip{
-    font-size:12.5px; padding:5px 10px; border-radius:7px; background:var(--paper-deep); color:var(--ink);
-  }
+      /* ---------- PROJECT DETAIL MODAL ---------- */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 20, 26, 0.72);
+        backdrop-filter: blur(3px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        padding: 4vh 20px;
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .modal-card {
+        background: var(--card);
+        border-radius: 14px;
+        max-width: 960px;
+        width: 100%;
+        max-height: 92vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        box-shadow: 0 30px 60px rgba(10, 20, 30, 0.4);
+        opacity: 0;
+        transform: translateY(14px) scale(0.98);
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease;
+      }
+      .modal-overlay.open .modal-card {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      .modal-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px 22px;
+        border-bottom: 1px solid var(--line);
+        background: var(--card);
+        flex: 0 0 auto;
+      }
+      .modal-top-text {
+        min-width: 0;
+      }
+      .modal-top h3 {
+        font-family: var(--font-display);
+        font-size: 19px;
+        margin: 0 0 4px;
+        font-weight: 600;
+      }
+      .modal-meta {
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        color: var(--slate);
+        margin: 0;
+      }
+      .modal-close {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--slate);
+      }
+      .modal-close:hover {
+        color: var(--ink);
+        border-color: var(--ink);
+      }
+      .modal-close svg {
+        width: 15px;
+        height: 15px;
+      }
+      .modal-scroll {
+        overflow-y: auto;
+        flex: 1 1 auto;
+        background: var(--paper-deep);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .modal-scroll img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .modal-img-fallback {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 60px 30px;
+        text-align: center;
+        color: var(--slate);
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        width: 100%;
+      }
+      .modal-img-fallback code {
+        background: var(--card);
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: var(--blue-deep);
+      }
+      .modal-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 14px 22px;
+        border-top: 1px solid var(--line);
+        background: var(--card);
+        flex: 0 0 auto;
+      }
+      body.modal-locked {
+        overflow: hidden;
+      }
 
-  /* ---------- EDUCATION ---------- */
-  .edu-card{
-    border:1px solid var(--line); background:var(--card); border-radius:12px; padding:28px 30px;
-    display:grid; gap:16px;
-  }
-  .edu-top h3{font-family:var(--font-display); font-size:20px; margin:0 0 4px;}
-  .edu-top p{margin:0; color:var(--slate); font-size:14px;}
-  .edu-meta{display:flex; flex-wrap:wrap; gap:22px;}
-  .edu-meta div{font-size:13.5px;}
-  .edu-meta .k{font-family:var(--font-mono); font-size:11px; color:var(--blue-deep); text-transform:uppercase; letter-spacing:.05em; margin-bottom:3px;}
-  .edu-line{border-top:1px dashed var(--line); padding-top:14px; font-size:13.5px; color:var(--slate);}
-  .edu-line b{color:var(--ink); font-family:var(--font-mono); font-size:11.5px; text-transform:uppercase; letter-spacing:.04em;}
+      /* ---------- SKILLS ---------- */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      @media (max-width: 860px) {
+        .skills-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 560px) {
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .skill-box {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: 12px;
+        padding: 18px;
+      }
+      .skill-box .legend-key {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--slate);
+      }
+      .legend-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
+      .skill-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+      .skill-chip {
+        font-size: 12.5px;
+        padding: 5px 10px;
+        border-radius: 7px;
+        background: var(--paper-deep);
+        color: var(--ink);
+      }
 
-  /* ---------- FOOTER ---------- */
-  .footer{background:var(--ink); color:#EFEDE3; padding:64px 0 34px;}
-  .footer .eyebrow{color:#8FB2CE;}
-  .footer h2{font-family:var(--font-display); font-size:clamp(24px,3.6vw,34px); margin:10px 0 22px; max-width:20ch;}
-  .footer-contact{display:flex; flex-wrap:wrap; gap:16px; margin-bottom:44px;}
-  .footer .btn-primary{background:var(--amber); color:var(--ink);}
-  .footer-links{display:flex; flex-wrap:wrap; gap:22px; font-family:var(--font-mono); font-size:13px;}
-  .footer-links a{text-decoration:none; color:#C9C6B8; display:flex; align-items:center; gap:6px;}
-  .footer-links a:hover{color:#fff;}
-  .footer-links svg{width:14px; height:14px;}
-  .footer-bottom{
-    margin-top:40px; padding-top:20px; border-top:1px solid rgba(255,255,255,.12);
-    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
-    font-family:var(--font-mono); font-size:11.5px; color:#8A8875;
-  }
+      /* ---------- EDUCATION ---------- */
+      .edu-card {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: 12px;
+        padding: 28px 30px;
+        display: grid;
+        gap: 16px;
+      }
+      .edu-top h3 {
+        font-family: var(--font-display);
+        font-size: 20px;
+        margin: 0 0 4px;
+      }
+      .edu-top p {
+        margin: 0;
+        color: var(--slate);
+        font-size: 14px;
+      }
+      .edu-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 22px;
+      }
+      .edu-meta div {
+        font-size: 13.5px;
+      }
+      .edu-meta .k {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--blue-deep);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 3px;
+      }
+      .edu-line {
+        border-top: 1px dashed var(--line);
+        padding-top: 14px;
+        font-size: 13.5px;
+        color: var(--slate);
+      }
+      .edu-line b {
+        color: var(--ink);
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
 
-  @media (max-width:640px){
-    .navlinks{display:none;}
-    .navtoggle{display:inline-block;}
-    .hero-grid{align-items:flex-start;}
-    .avatar-card{width:120px; height:120px;}
-    .avatar-card .initials{font-size:32px;}
-    .exp-head .when{margin-left:0;}
-  }
-</style>
-</head>
-<body>
+      /* ---------- FOOTER ---------- */
+      .footer {
+        background: var(--ink);
+        color: #efede3;
+        padding: 64px 0 34px;
+      }
+      .footer .eyebrow {
+        color: #8fb2ce;
+      }
+      .footer h2 {
+        font-family: var(--font-display);
+        font-size: clamp(24px, 3.6vw, 34px);
+        margin: 10px 0 22px;
+        max-width: 20ch;
+      }
+      .footer-contact {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 44px;
+      }
+      .footer .btn-primary {
+        background: var(--amber);
+        color: var(--ink);
+      }
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 22px;
+        font-family: var(--font-mono);
+        font-size: 13px;
+      }
+      .footer-links a {
+        text-decoration: none;
+        color: #c9c6b8;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .footer-links a:hover {
+        color: #fff;
+      }
+      .footer-links svg {
+        width: 14px;
+        height: 14px;
+      }
+      .footer-bottom {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        color: #8a8875;
+      }
 
-<div class="topbar">
-  <div class="topbar-inner">
-    <div class="brandmark"><span class="box">TNT</span> Thai Nhat Thu</div>
-    <div class="navlinks">
-      <a href="#path">Path</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
-    </div>
-    <span class="status-pill">Open to work</span>
-  </div>
-</div>
-
-<section class="hero">
-  <div class="wrap">
-    <div class="doc-header">
-      <span><b>DOC</b> CV/BA-THU</span>
-      <span><b>REV</b> 2026.07</span>
-      <span><b>ROLE</b> Business Analyst</span>
-      <span><b>STATUS</b> Open to work</span>
-    </div>
-    <div class="hero-grid">
-      <div class="hero-main">
-        <p class="eyebrow">IT Business Analyst</p>
-        <h1 class="name">Thai Nhat Thu</h1>
-        <p class="role-line">Requirements → Design → UAT → Ship</p>
-        <p class="objective">1+ year of experience across product and outsourcing environments, with a strong IT background in AI-powered SaaS, UAT, and Agile SDLC. Looking for a Business Analyst role that turns messy requirements into solutions that actually get built.</p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="mailto:tnthu.78@gmail.com">Get in touch</a>
-          <a class="btn btn-ghost" href="#projects">View projects</a>
+      @media (max-width: 640px) {
+        .navlinks {
+          display: none;
+        }
+        .navtoggle {
+          display: inline-block;
+        }
+        .hero-grid {
+          align-items: flex-start;
+        }
+        .avatar-card {
+          width: 168px;
+          height: 168px;
+          border-radius: 16px;
+        }
+        .avatar-card .initials {
+          font-size: 44px;
+        }
+        .exp-head .when {
+          margin-left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="brandmark"><span class="box">TNT</span> Thai Nhat Thu</div>
+        <div class="navlinks">
+          <a href="#path">Path</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#education">Education</a>
         </div>
-        <div class="contact-row">
-          <a href="tel:+84907464382">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
-            (+84) 907 464 382
-          </a>
-          <a href="mailto:tnthu.78@gmail.com">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
-            tnthu.78@gmail.com
-          </a>
-          <a href="https://linkedin.com/in/tnthu78" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8.24h4V23h-4zM8.5 8.24h3.83v2.01h.05c.53-1 1.84-2.06 3.79-2.06 4.06 0 4.81 2.67 4.81 6.14V23h-4v-6.75c0-1.61-.03-3.68-2.24-3.68-2.25 0-2.6 1.75-2.6 3.56V23h-4z"/></svg>
+        <span class="status-pill">Open to work</span>
+        <button
+          class="navtoggle"
+          id="navtoggle"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+          aria-label="Toggle navigation menu"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-menu" id="mobileMenu">
+        <a href="#path">Path</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+      </nav>
+    </div>
+
+    <section class="hero">
+      <div class="wrap">
+        <div class="doc-header">
+          <span><b>DOC</b> CV/BA-THU</span>
+          <span><b>ROLE</b> Business Analyst</span>
+          <span><b>STATUS</b> Open to work</span>
+        </div>
+        <div class="hero-grid">
+          <div class="hero-main">
+            <p class="eyebrow">IT Business Analyst</p>
+            <h1 class="name">Thai Nhat Thu</h1>
+            <p class="objective">
+              1+ year of experience across product and outsourcing environments,
+              with a strong IT background in AI-powered SaaS, UAT, and Agile
+              SDLC. Looking for a Business Analyst role that turns messy
+              requirements into solutions that actually get built.
+            </p>
+  
+            <div class="contact-row">
+              <a href="tel:+84907464382">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+                (+84) 907 464 382
+              </a>
+              <a href="mailto:tnthu.78@gmail.com">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M4 4h16v16H4z" opacity="0" />
+                  <path d="M22 6l-10 7L2 6" />
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                </svg>
+                tnthu.78@gmail.com
+              </a>
+              <a
+                href="https://linkedin.com/in/tnthu78"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8.24h4V23h-4zM8.5 8.24h3.83v2.01h.05c.53-1 1.84-2.06 3.79-2.06 4.06 0 4.81 2.67 4.81 6.14V23h-4v-6.75c0-1.61-.03-3.68-2.24-3.68-2.25 0-2.6 1.75-2.6 3.56V23h-4z"
+                  />
+                </svg>
+                linkedin.com/in/tnthu78
+              </a>
+              <a
+                href="https://github.com/thainhatthu"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 .3a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.08 1.83 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3z"
+                  />
+                </svg>
+                github.com/thainhatthu
+              </a>
+            </div>
+          </div>
+          <div class="avatar-card" id="avatarCard">
+            <span class="corner c1"></span>
+            <img
+              src="img/avatar.jpg"
+              alt="Thai Nhat Thu"
+              id="avatarImg"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 14px;
+              "
+              onerror="
+                this.remove();
+                document.getElementById('avatarFallback').style.display =
+                  'flex';
+              "
+            />
+            <div
+              id="avatarFallback"
+              style="
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <span class="initials">TT</span>
+              <span class="tag">Business Analyst</span>
+            </div>
+            <span class="corner c2"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="flow-section" id="path">
+      <div class="wrap section" style="padding-top: 56px; padding-bottom: 56px">
+        <div class="section-head">
+          <p class="eyebrow">Career flow</p>
+          <h2>How I got to "Business Analyst"</h2>
+          <p>
+            Every role added a piece of the SDLC — from writing code, to writing
+            requirements, to sitting between the two.
+          </p>
+        </div>
+        <div class="flow-track">
+          <div class="flow-node">
+            <span class="seq">P1 · EDU</span>
+            <div class="when">2022 – 2026</div>
+            <h3>VNU – UIT</h3>
+            <p>Computer Networks &amp; Data Comms · GPA 8.29</p>
+          </div>
+          <div class="flow-connector"></div>
+          <div class="flow-node">
+            <span class="seq">P2 · INTERN</span>
+            <div class="when">Sep 2024 – Mar 2025</div>
+            <h3>BOSCH</h3>
+            <p>Software Developer Intern — CI/CD requirements</p>
+          </div>
+          <div class="flow-connector"></div>
+          <div class="flow-node">
+            <span class="seq">P3 · JR. BA</span>
+            <div class="when">Aug – Feb 2026</div>
+            <h3>DR Digital</h3>
+            <p>Junior Business Analyst — AI-powered SaaS</p>
+          </div>
+          <div class="flow-connector"></div>
+          <div class="flow-node">
+            <span class="seq">P4 · BA</span>
+            <div class="when">Mar – May 2026</div>
+            <h3>Estuary Solutions</h3>
+            <p>Business Analyst / Project Assistant</p>
+          </div>
+          <div class="flow-connector"></div>
+          <div class="flow-node target">
+            <span class="seq">P5 · NEXT</span>
+            <div class="when">2026 →</div>
+            <h3>Your team?</h3>
+            <p>Business Analyst, full-time</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Work experience</h2>
+          <p>
+            Three roles, three flavors of the same job: figure out what the
+            business actually needs, then make sure it ships correctly.
+          </p>
+        </div>
+        <div class="exp-list">
+          <div class="exp-item">
+            <div class="exp-tag">EXP-01</div>
+            <div class="exp-head">
+              <h3>Business Analyst / Project Assistant</h3>
+              <span class="when">Mar – May 2026</span>
+            </div>
+            <p class="exp-org">Estuary Solutions</p>
+          <ul>
+  <li>
+    <b>Requirement Elicitation</b>: Gathered and analyzed business requirements from high-level 
+    domains to detail specifications for the Ovaltine Loyalty &amp; Gamification platform and the 
+    Davipharm e-Learning system.
+  </li>
+  <li>
+    <b>System &amp; UI/UX Design</b>: Modeled end-to-end business process flows and interactive 
+    Figma mockups for the Davipharm project (Admin configuration dashboard &amp; user 
+    learning interface) and core loyalty mechanics (points &amp; rewards).
+  </li>
+  <li>
+    <b>Data Analysis &amp; Reporting</b>: Analyzed backend logs of over 10K+ user interactions; 
+    processed data via advanced Excel to generate weekly reports tracking user retention 
+    and churn rates for the Ovaltine campaign.
+  </li>
+  <li>
+    <b>Testing &amp; Validation</b>: Authored comprehensive BRDs/FRSs, created system test cases, 
+    and directly supported UAT, Go-Live operations, and post-launch data setup.
+  </li>
+</ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-tag">EXP-02</div>
+            <div class="exp-head">
+              <h3>Junior Business Analyst</h3>
+              <span class="when">Aug – Feb 2026</span>
+            </div>
+            <p class="exp-org">DR Digital company</p>
+              <ul>
+                <li>
+                  <b>AI Product Discovery &amp; Specs</b>: Researched market trends to propose core modules and 
+                  feature roadmaps for 2 AI SaaS platforms (EVOL FIELD &amp; Ask2Auto); designed Figma wireframes 
+                  for marketing landing pages and admin CMS portals.
+                </li>
+                <li>
+                  <b>Agile Delivery &amp; Testing</b>: Managed Sprints and product backlogs on Jira; partnered 
+                  with Dev/QA to clarify specs, resolve Q&amp;As, execute UAT, and validate delivered features.
+                </li>
+                <li>
+                  <b>Client Onboarding</b>: Coordinated user training, system demos, and platform deployment 
+                  for major enterprise clients (Heineken, Nestlé, Daikin Vietnam).
+                </li>
+              </ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-tag">EXP-03</div>
+            <div class="exp-head">
+              <h3>Software Developer Intern</h3>
+              <span class="when">Sep 2024 – Mar 2025</span>
+            </div>
+            <p class="exp-org">BOSCH</p>
+            <ul>
+              <li>
+                Collaborated with project managers and stakeholders to gather
+                and clarify CI/CD system requirements.
+              </li>
+              <li>
+                Supported process documentation and workflow definition for
+                build, test, and deployment pipelines.
+              </li>
+              <li>
+                Collected operational data and generated monthly reports to
+                support management decisions.
+              </li>
+              <li>
+                Documented meeting outcomes and ensured requirements
+                traceability.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="section"
+      id="projects"
+      style="
+        background: var(--paper-deep);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      "
+    >
+      <div class="wrap">
+          <p class="eyebrow">Selected projects</p>
+        <div class="proj-subhead">
+          <h3>Product &amp; enterprise projects</h3>
+          <span class="count"
+            >6 projects · DR Digital &amp; Estuary Solutions</span
+          >
+        </div>
+        <div class="proj-grid">
+          <div class="proj-card">
+            <div class="proj-media">
+              <img
+                src="img/Frame-1.png"
+                alt="Placeholder screenshot for Evol Askly"
+              />
+              <span class="proj-badge">DR Digital · AI Agent Platform</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-title-row">
+                <h3>Evol Askly</h3>
+                <span class="proj-when">Aug 2025 – Feb 2026</span>
+              </div>
+              <ul>
+                <li>
+                  Elicited requirements from product stakeholders; mapped as-is
+                  vs to-be support &amp; sales workflows.
+                </li>
+                <li>
+                  Authored PRDs and user stories for core modules — Agent
+                  onboarding, Knowledge base, AI Action, Integrations.
+                </li>
+                <li>
+                  Defined business rules and use cases for AI Action triggers,
+                  escalation paths, and knowledge-sync logic.
+                </li>
+              </ul>
+              <div class="case-cta">
+                <button class="case-btn" data-project="evol-askly">
+                  View detail <span class="arrow">→</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-media">
+              <img
+                src="img/Frame-2.png"
+                alt="Placeholder screenshot for Evol Field"
+              />
+              <span class="proj-badge">DR Digital · AI-powered SaaS</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-title-row">
+                <h3>Evol Field</h3>
+                <span class="proj-when">Aug 2025 – Feb 2026</span>
+              </div>
+              <ul>
+                <li>
+                  Conducted market research and user-need analysis to propose
+                  AI-driven feature enhancements.
+                </li>
+                <li>
+                  Translated complex AI concepts into PRDs, user stories, and
+                  system process flows.
+                </li>
+                <li>
+                  Coordinated demos, training, and deployment for enterprise
+                  clients — Heineken, Nestlé, Daikin Vietnam.
+                </li>
+              </ul>
+              <div class="case-cta">
+                <button class="case-btn" data-project="evol-field">
+                  View detail <span class="arrow">→</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-media">
+              <img
+                src="img/Frame-7.png"
+                alt="Placeholder screenshot for Ovaltine Loyalty and Gamification"
+              />
+              <span class="proj-badge"
+                >Estuary · Loyalty &amp; Gamification</span
+              >
+              <span class="placeholder-note">Replace image</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-title-row">
+                <h3>Ovaltine — Loyalty &amp; Gamification</h3>
+                <span class="proj-when">Mar – May 2026</span>
+              </div>
+              <ul>
+                <li>
+                  Conceptualized seasonal minigames to drive product sales.
+                </li>
+                <li>
+                  Designed core loyalty mechanics — point accumulation and
+                  reward-redemption rules.
+                </li>
+                <li>
+                  Authored the BRD and interactive UI/UX wireframes in Figma;
+                  ran functional testing and supported UAT.
+                </li>
+              </ul>
+              <div class="case-cta">
+                     <a
+                  href="https://ovaltinevietnam.com"
+                  target="_blank"
+                  rel="noopener"
+                  class="case-btn"
+                  style="
+                    text-decoration: none;
+                    display: inline-block;
+                    text-align: center;
+                  "
+                >
+                  View detail <span class="arrow">→</span>
+                </a>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-media">
+              <img
+                src="https://placehold.co/640x400/2c5c86/f3f1ea?text=E-Learning+Platform"
+                alt="Placeholder screenshot for E-Learning platform"
+              />
+              <span class="proj-badge">Estuary · E-Learning</span>
+              <span class="placeholder-note">Replace image</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-title-row">
+                <h3>E-Learning Platform</h3>
+                <span class="proj-when">Mar – May 2026</span>
+              </div>
+              <ul>
+                <li>
+                  Elicited requirements for the e-learning initiative alongside
+                  two parallel projects.
+                </li>
+                <li>Authored BRDs and interactive wireframes in Figma.</li>
+                <li>
+                  Created test cases, ran functional testing, and supported UAT,
+                  Go-Live, and post-launch data setup.
+                </li>
+              </ul>
+              <div class="case-cta">
+                <button class="case-btn" data-project="elearning">
+                  View detail <span class="arrow">→</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-subhead">
+          <h3>Academic &amp; practice projects</h3>
+          <span class="count">4 projects · Thesis &amp; self-directed</span>
+        </div>
+        <p class="proj-subnote">
+          Independent and coursework projects used to build the
+          requirement-to-prototype skillset end to end.
+        </p>
+        <div class="proj-grid">
+          <div class="proj-card">
+            <div class="proj-media">
+              <img
+                src="img/Frame-4.png"
+                alt="Placeholder screenshot for Road Quality Warning System"
+              />
+              <span class="proj-badge">Thesis · 9.0/10</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-title-row">
+                <h3>Road Quality Warning System</h3>
+                <span class="proj-when">Dec 2025</span>
+              </div>
+              <ul>
+                <li>
+                  Requirement elicitation via BACCM; surveyed 70+ participants.
+                </li>
+                <li>
+                  Authored BRDs; modeled use cases, activity diagrams, and
+                  process flows.
+                </li>
+                <li>
+                  Designed system architecture, feature list, and Figma
+                  prototypes; ran functional testing.
+                </li>
+              </ul>
+              <div class="case-cta">
+                <a
+                  href="https://nc.uit.edu.vn/khoa-luan/nghien-cuu-xay-dung-he-thong-canh-bao-chat-luong-duong-bo-su-dung-hoc-sau"
+                  target="_blank"
+                  rel="noopener"
+                  class="case-btn"
+                  style="
+                    text-decoration: none;
+                    display: inline-block;
+                    text-align: center;
+                  "
+                >
+                  View detail <span class="arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-media">
+              <img
+                src="img/Frame-5.png"
+                alt="Placeholder screenshot for Circle Banking App"
+              />
+              <span class="proj-badge">Practice project</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-title-row">
+                <h3>Circle Banking App</h3>
+                <span class="proj-when">May 2025</span>
+              </div>
+              <ul>
+                <li>
+                  Gathered client requirements and drafted wireframes and UI
+                  flows.
+                </li>
+                <li>
+                  Authored functional specification documents (FSD) and business
+                  rules.
+                </li>
+                <li>Modeled BPMN diagrams and structured use cases.</li>
+              </ul>
+              <div class="case-cta">
+                <a
+                  href="https://www.figma.com/design/5mDzI8HkqrTssjfEPktpXI/BAF---Figma-Demo?node-id=0-1&t=QTyy5Qs354FdV8YB-1"
+                  target="_blank"
+                  rel="noopener"
+                  class="case-btn"
+                  style="
+                    text-decoration: none;
+                    display: inline-block;
+                    text-align: center;
+                  "
+                >
+                  View detail <span class="arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-media">
+              <img
+                src="img/Frame-3.png"
+                alt="Placeholder screenshot for Pet Shop Website UI/UX"
+              />
+              <span class="proj-badge">UI/UX design</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-title-row">
+                <h3>UI/UX Design — Pet Shop Website</h3>
+                <span class="proj-when">Dec 2024</span>
+              </div>
+              <ul>
+                <li>
+                  Conducted user research to align design with business goals.
+                </li>
+                <li>
+                  Defined website theme, color scheme, typography, and key
+                  features.
+                </li>
+                <li>
+                  Created UI flow diagrams, interactive prototypes, and ran
+                  usability testing.
+                </li>
+              </ul>
+
+              <div class="case-cta">
+                <a
+                  href="https://www.figma.com/proto/8ecWcAeW5HsDxWVDDVAroN/UI-Project---Pet-Shop-Website?node-id=2-5&t=G8nn1Xm4hJ2wKOKP-1"
+                  target="_blank"
+                  rel="noopener"
+                  class="case-btn"
+                  style="
+                    text-decoration: none;
+                    display: inline-block;
+                    text-align: center;
+                  "
+                >
+                  View detail <span class="arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-media">
+              <img
+                src="img/Frame-6.png"
+                alt="Placeholder screenshot for Environmental Quality Monitoring System"
+              />
+              <span class="proj-badge">Website</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-title-row">
+                <h3>Environmental Quality Monitoring System</h3>
+                <span class="proj-when">Apr 2024</span>
+              </div>
+              <ul>
+                <li>
+                  Collected and analyzed requirements for a real-time monitoring
+                  dashboard.
+                </li>
+                <li>
+                  Designed UI/UX wireframes with data visualizations and alerts.
+                </li>
+                <li>
+                  Implemented the front-end interface with API integrations.
+                </li>
+              </ul>
+              <div class="case-cta">
+                <button class="case-btn" data-project="env-monitoring">
+                  View detail <span class="arrow">→</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Skills legend</p>
+          <h2>The toolkit behind the diagrams</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-box">
+            <div class="legend-key">
+              <span class="legend-dot" style="background: var(--blue)"></span
+              >Business analysis
+            </div>
+            <div class="skill-chips">
+              <span class="skill-chip">Impact Analysis</span
+              ><span class="skill-chip">GAP Analysis</span>
+              <span class="skill-chip">BRD/SRS/FRS</span
+              ><span class="skill-chip">BPMN</span>
+              <span class="skill-chip">UML</span
+              ><span class="skill-chip">UI/UX</span>
+              <span class="skill-chip">Agile (Scrum)</span
+              >
+              <span class="skill-chip">Stakeholder Mgmt</span
+              ><span class="skill-chip">Change Request Mgmt</span>
+            </div>
+          </div>
+          <div class="skill-box">
+            <div class="legend-key">
+              <span class="legend-dot" style="background: var(--amber)"></span
+              >Programming
+            </div>
+            <div class="skill-chips">
+              <span class="skill-chip">SQL</span
+              ><span class="skill-chip">React Native</span>
+              <span class="skill-chip">HTML/CSS</span>
+            </div>
+          </div>
+          <div class="skill-box">
+            <div class="legend-key">
+              <span class="legend-dot" style="background: var(--slate)"></span
+              >Tools &amp; software
+            </div>
+            <div class="skill-chips">
+              <span class="skill-chip">Jira</span
+              ><span class="skill-chip">Confluence</span>
+              <span class="skill-chip">MS Office</span
+              ><span class="skill-chip">Postman</span>
+              <span class="skill-chip">Swagger</span
+              ><span class="skill-chip">Power BI</span>
+              <span class="skill-chip">MongoDB</span>
+            </div>
+          </div>
+          <div class="skill-box">
+            <div class="legend-key">
+              <span
+                class="legend-dot"
+                style="background: var(--blue-deep)"
+              ></span
+              >Design
+            </div>
+            <div class="skill-chips">
+              <span class="skill-chip">Figma</span
+              ><span class="skill-chip">Canva</span>
+              <span class="skill-chip">Draw.io</span
+              ><span class="skill-chip">Balsamiq</span>
+              <span class="skill-chip">Stitch AI</span
+              ><span class="skill-chip">MS Visio</span>
+            </div>
+          </div>
+          <div class="skill-box">
+            <div class="legend-key">
+              <span class="legend-dot" style="background: var(--ink)"></span
+              >Soft skills
+            </div>
+            <div class="skill-chips">
+              <span class="skill-chip">Proactive</span
+              ><span class="skill-chip">Research</span>
+              <span class="skill-chip">Critical Thinking</span
+              ><span class="skill-chip">Communication</span>
+              <span class="skill-chip">Problem Solving</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education" style="padding-top: 0">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Education</p>
+          <h2>Where the fundamentals came from</h2>
+        </div>
+        <div class="edu-card">
+          <div class="edu-top">
+            <h3>
+              University of Information Technology — Vietnam National University
+              (VNU)
+            </h3>
+            <p>
+              Bachelor's degree, Computer Networks &amp; Data Communications
+            </p>
+          </div>
+          <div class="edu-meta">
+            <div>
+              <div class="k">GPA</div>
+              8.29 / 10
+            </div>
+            <div>
+              <div class="k">TOEIC L&amp;R</div>
+              600
+            </div>
+            <div>
+              <div class="k">TOEIC S&amp;W</div>
+              270
+            </div>
+          </div>
+          <div class="edu-line">
+            <b>Coursework</b> — UI/UX, SQL, Cloud Computing, Mobile &amp; Web
+            Application Development, Software Testing
+          </div>
+          <div class="edu-line">
+            <b>Certificate</b> — Business Analysis Foundationn at Circle Academy
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="wrap">
+        <h2>Let's talk about a Business Analyst role.</h2>
+        <div class="footer-contact">
+          <a class="btn btn-primary" href="mailto:tnthu.78@gmail.com"
+            >Email tnthu.78@gmail.com</a
+          >
+          <a
+            class="btn btn-ghost"
+            style="border-color: #efede3; color: #efede3"
+            href="tel:+84907464382"
+            >Call (+84) 907 464 382</a
+          >
+        </div>
+        <div class="footer-links">
+          <a
+            href="https://linkedin.com/in/tnthu78"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8.24h4V23h-4zM8.5 8.24h3.83v2.01h.05c.53-1 1.84-2.06 3.79-2.06 4.06 0 4.81 2.67 4.81 6.14V23h-4v-6.75c0-1.61-.03-3.68-2.24-3.68-2.25 0-2.6 1.75-2.6 3.56V23h-4z"
+              />
+            </svg>
             linkedin.com/in/tnthu78
           </a>
-          <a href="https://github.com/thainhatthu" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.08 1.83 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3z"/></svg>
+          <a
+            href="https://github.com/thainhatthu"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 .3a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.08 1.83 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3z"
+              />
+            </svg>
             github.com/thainhatthu
           </a>
         </div>
       </div>
-      <div class="avatar-card">
-        <span class="corner c1"></span>
-        <span class="corner c2"></span>
-        <div class="initials">TNT</div>
-        <div class="tag">// swap for real photo</div>
-      </div>
-    </div>
-  </div>
-</section>
+    </footer>
 
-<section class="flow-section" id="path">
-  <div class="wrap section" style="padding-top:56px; padding-bottom:56px;">
-    <div class="section-head">
-      <p class="eyebrow">Career flow</p>
-      <h2>How I got to "Business Analyst"</h2>
-      <p>Every role added a piece of the SDLC — from writing code, to writing requirements, to sitting between the two.</p>
-    </div>
-    <div class="flow-track">
-      <div class="flow-node"><span class="seq">P1 · EDU</span><div class="when">2022 – 2026</div><h3>VNU – UIT</h3><p>Computer Networks &amp; Data Comms · GPA 8.29</p></div>
-      <div class="flow-connector"></div>
-      <div class="flow-node"><span class="seq">P2 · INTERN</span><div class="when">Sep 2024 – Mar 2025</div><h3>BOSCH</h3><p>Software Developer Intern — CI/CD requirements</p></div>
-      <div class="flow-connector"></div>
-      <div class="flow-node"><span class="seq">P3 · JR. BA</span><div class="when">Aug – Feb 2026</div><h3>DR Digital</h3><p>Junior Business Analyst — AI-powered SaaS</p></div>
-      <div class="flow-connector"></div>
-      <div class="flow-node"><span class="seq">P4 · BA</span><div class="when">Mar – May 2026</div><h3>Estuary Solutions</h3><p>Business Analyst / Project Assistant</p></div>
-      <div class="flow-connector"></div>
-      <div class="flow-node target"><span class="seq">P5 · NEXT</span><div class="when">2026 →</div><h3>Your team?</h3><p>Business Analyst, full-time</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="experience">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Work experience</p>
-      <h2>Requirements, mockups, and UAT — in that order</h2>
-      <p>Three roles, three flavors of the same job: figure out what the business actually needs, then make sure it ships correctly.</p>
-    </div>
-    <div class="exp-list">
-
-      <div class="exp-item">
-        <div class="exp-tag">EXP-01</div>
-        <div class="exp-head">
-          <h3>Business Analyst / Project Assistant</h3>
-          <span class="when">Mar – May 2026</span>
+    <div
+      class="modal-overlay"
+      id="modalOverlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <div class="modal-card">
+        <div class="modal-top">
+          <div class="modal-top-text">
+            <h3 id="modalTitle"></h3>
+            <p class="modal-meta" id="modalMeta"></p>
+          </div>
+          <button
+            class="modal-close"
+            id="modalClose"
+            aria-label="Close case study"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
         </div>
-        <p class="exp-org">Estuary Solutions</p>
-        <ul>
-          <li><b>Requirement elicitation</b> across 3 projects — Loyalty &amp; Gamification (Ovaltine), SalesTech (Davipharm), and e-Learning.</li>
-          <li><b>Gamification design</b> — conceptualized seasonal minigames and core loyalty mechanics (point accumulation, reward redemption).</li>
-          <li><b>Documentation &amp; mockups</b> — authored BRDs and designed interactive UI/UX wireframes in Figma.</li>
-          <li><b>Testing &amp; operation</b> — wrote test cases, ran functional testing, supported UAT, Go-Live, and post-launch data setup.</li>
-        </ul>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-tag">EXP-02</div>
-        <div class="exp-head">
-          <h3>Junior Business Analyst</h3>
-          <span class="when">Aug – Feb 2026</span>
-        </div>
-        <p class="exp-org">DR Digital company</p>
-        <ul>
-          <li><b>Market research</b> and user need analysis to propose AI-driven feature enhancements aligned with market demand.</li>
-          <li>Led requirements for 2 AI-powered SaaS platforms (EVOL FIELD &amp; Ask2Auto); translated complex AI concepts into PRDs, user stories, and process flows.</li>
-          <li>Partnered with Dev/QA teams to resolve open questions, support UAT, and validate system performance against specs.</li>
-          <li>Coordinated user training, system demos, and deployment for enterprise clients — Heineken, Nestlé, Daikin Vietnam.</li>
-        </ul>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-tag">EXP-03</div>
-        <div class="exp-head">
-          <h3>Software Developer Intern</h3>
-          <span class="when">Sep 2024 – Mar 2025</span>
-        </div>
-        <p class="exp-org">BOSCH</p>
-        <ul>
-          <li>Collaborated with project managers and stakeholders to gather and clarify CI/CD system requirements.</li>
-          <li>Supported process documentation and workflow definition for build, test, and deployment pipelines.</li>
-          <li>Collected operational data and generated monthly reports to support management decisions.</li>
-          <li>Documented meeting outcomes and ensured requirements traceability.</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="section" id="projects" style="background:var(--paper-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Selected projects</p>
-      <h2>From survey to prototype to shippable spec</h2>
-      <p>Images below are placeholders — swap in real screenshots, Figma frames, or diagrams whenever you're ready.</p>
-    </div>
-    <div class="proj-grid">
-
-      <div class="proj-card">
-        <div class="proj-media">
-          <img src="https://placehold.co/640x400/2c5c86/f3f1ea?text=Road+Quality+Warning+System" alt="Placeholder screenshot for Road Quality Warning System">
-          <span class="proj-badge">Thesis · 9.0/10</span>
-          <span class="placeholder-note">Replace image</span>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title-row"><h3>Road Quality Warning System</h3><span class="proj-when">Dec 2025</span></div>
-          <ul>
-            <li>Requirement elicitation via BACCM; surveyed 70+ participants.</li>
-            <li>Authored BRDs; modeled use cases, activity diagrams, and process flows.</li>
-            <li>Designed system architecture, feature list, and Figma prototypes; ran functional testing.</li>
-          </ul>
-          <div class="proj-tags">
-            <span class="tag-chip">Machine Learning</span>
-            <span class="tag-chip">Microservices</span>
-            <span class="tag-chip">BACCM</span>
-            <span class="tag-chip">Figma</span>
+        <div class="modal-scroll" id="modalScroll">
+          <img
+            id="modalImg"
+            src=""
+            alt=""
+            onerror="
+              document.getElementById('modalImgFallback').style.display =
+                'flex';
+              this.style.display = 'none';
+            "
+          />
+          <div class="modal-img-fallback" id="modalImgFallback">
+            <span>Case study image not found for this project yet.</span>
+            <span
+              >Drop your JPG next to this file at <code id="modalImgPath"></code
+            ></span>
           </div>
         </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-media">
-          <img src="https://placehold.co/640x400/1d3f5c/f3f1ea?text=Circle+Banking+App" alt="Placeholder screenshot for Circle Banking App">
-          <span class="proj-badge">Practice project</span>
-          <span class="placeholder-note">Replace image</span>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title-row"><h3>Circle Banking App</h3><span class="proj-when">May 2025</span></div>
-          <ul>
-            <li>Gathered client requirements and drafted wireframes and UI flows.</li>
-            <li>Authored functional specification documents (FSD) and business rules.</li>
-            <li>Modeled BPMN diagrams and structured use cases.</li>
-          </ul>
-          <div class="proj-tags">
-            <span class="tag-chip">FSD</span>
-            <span class="tag-chip">BPMN</span>
-            <span class="tag-chip">Wireframes</span>
-          </div>
-          <div class="proj-links"><a href="#" target="_blank" rel="noopener">Figma →</a><a href="#" target="_blank" rel="noopener">BPMN →</a></div>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-media">
-          <img src="https://placehold.co/640x400/db9a3c/17212b?text=Pet+Shop+UI%2FUX" alt="Placeholder screenshot for Pet Shop Website UI/UX">
-          <span class="proj-badge">UI/UX design</span>
-          <span class="placeholder-note">Replace image</span>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title-row"><h3>UI/UX Design — Pet Shop Website</h3><span class="proj-when">Dec 2024</span></div>
-          <ul>
-            <li>Conducted user research to align design with business goals.</li>
-            <li>Defined website theme, color scheme, typography, and key features.</li>
-            <li>Created UI flow diagrams, interactive prototypes, and ran usability testing.</li>
-          </ul>
-          <div class="proj-tags">
-            <span class="tag-chip">User Research</span>
-            <span class="tag-chip">Figma</span>
-            <span class="tag-chip">Usability Testing</span>
-          </div>
-          <div class="proj-links"><a href="#" target="_blank" rel="noopener">Figma →</a></div>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-media">
-          <img src="https://placehold.co/640x400/56636d/ffffff?text=Environmental+Monitoring" alt="Placeholder screenshot for Environmental Quality Monitoring System">
-          <span class="proj-badge">Website</span>
-          <span class="placeholder-note">Replace image</span>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title-row"><h3>Environmental Quality Monitoring System</h3><span class="proj-when">Apr 2024</span></div>
-          <ul>
-            <li>Collected and analyzed requirements for a real-time monitoring dashboard.</li>
-            <li>Designed UI/UX wireframes with data visualizations and alerts.</li>
-            <li>Implemented the front-end interface with API integrations.</li>
-          </ul>
-          <div class="proj-tags">
-            <span class="tag-chip">Dashboard</span>
-            <span class="tag-chip">API Integration</span>
-            <span class="tag-chip">Wireframes</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="section" id="skills">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Skills legend</p>
-      <h2>The toolkit behind the diagrams</h2>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-box">
-        <div class="legend-key"><span class="legend-dot" style="background:var(--blue);"></span>Business analysis</div>
-        <div class="skill-chips">
-          <span class="skill-chip">Impact Analysis</span><span class="skill-chip">GAP Analysis</span>
-          <span class="skill-chip">BRD/SRS/FRS</span><span class="skill-chip">BPMN</span>
-          <span class="skill-chip">UML</span><span class="skill-chip">UI/UX</span>
-          <span class="skill-chip">Agile (Scrum)</span><span class="skill-chip">Waterfall</span>
-          <span class="skill-chip">Stakeholder Mgmt</span><span class="skill-chip">Change Request Mgmt</span>
-        </div>
-      </div>
-      <div class="skill-box">
-        <div class="legend-key"><span class="legend-dot" style="background:var(--amber);"></span>Programming</div>
-        <div class="skill-chips">
-          <span class="skill-chip">C++</span><span class="skill-chip">SQL</span>
-          <span class="skill-chip">Python</span><span class="skill-chip">React Native</span>
-          <span class="skill-chip">HTML/CSS</span>
-        </div>
-      </div>
-      <div class="skill-box">
-        <div class="legend-key"><span class="legend-dot" style="background:var(--slate);"></span>Tools &amp; software</div>
-        <div class="skill-chips">
-          <span class="skill-chip">Jira</span><span class="skill-chip">Confluence</span>
-          <span class="skill-chip">MS Office</span><span class="skill-chip">Postman</span>
-          <span class="skill-chip">Swagger</span><span class="skill-chip">Power BI</span>
-          <span class="skill-chip">MongoDB</span>
-        </div>
-      </div>
-      <div class="skill-box">
-        <div class="legend-key"><span class="legend-dot" style="background:var(--blue-deep);"></span>Design</div>
-        <div class="skill-chips">
-          <span class="skill-chip">Figma</span><span class="skill-chip">Canva</span>
-          <span class="skill-chip">Draw.io</span><span class="skill-chip">Balsamiq</span>
-          <span class="skill-chip">Stitch AI</span><span class="skill-chip">MS Visio</span>
-        </div>
-      </div>
-      <div class="skill-box">
-        <div class="legend-key"><span class="legend-dot" style="background:var(--ink);"></span>Soft skills</div>
-        <div class="skill-chips">
-          <span class="skill-chip">Proactive</span><span class="skill-chip">Research</span>
-          <span class="skill-chip">Critical Thinking</span><span class="skill-chip">Communication</span>
-          <span class="skill-chip">Problem Solving</span>
-        </div>
+        <div class="modal-tags" id="modalTags"></div>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="section" id="education" style="padding-top:0;">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Education</p>
-      <h2>Where the fundamentals came from</h2>
-    </div>
-    <div class="edu-card">
-      <div class="edu-top">
-        <h3>University of Information Technology — Vietnam National University (VNU)</h3>
-        <p>Bachelor's degree, Computer Networks &amp; Data Communications</p>
-      </div>
-      <div class="edu-meta">
-        <div><div class="k">GPA</div>8.29 / 10</div>
-        <div><div class="k">TOEIC L&amp;R</div>600</div>
-        <div><div class="k">TOEIC S&amp;W</div>270</div>
-      </div>
-      <div class="edu-line"><b>Coursework</b> — UI/UX, SQL, Cloud Computing, Mobile &amp; Web Application Development, Software Testing</div>
-      <div class="edu-line"><b>Certificate</b> — Business Analysis Foundations, Circle Academy</div>
-    </div>
-  </div>
-</section>
+    <script>
+      // ---------- Project case-study data ----------
+      // "img" points to a single tall JPG containing the full case study —
+      // the modal shows it at full width and the reader scrolls to read it.
+      // Drop your exported JPGs into an "img" folder next to this file, named as below.
+      var PROJECTS = {
+        "evol-askly": {
+          title: "Evol Askly",
+          meta: "DR Digital · AI Agent Platform · Aug 2025 – Feb 2026",
+          img: "img/askly.jpg",
+          tags: ["AI Agent", "PRD", "Use Case", "BPMN", "UAT"],
+        },
+        "evol-field": {
+          title: "Evol Field",
+          meta: "DR Digital · AI-powered SaaS · Aug 2025 – Feb 2026",
+          img: "img/case-evol-field.jpg",
+          tags: ["PRD", "User Stories", "Enterprise Rollout", "UAT"],
+        },
+        ask2auto: {
+          title: "Ask2Auto",
+          meta: "DR Digital · AI-powered SaaS · Aug 2025 – Feb 2026",
+          img: "img/case-ask2auto.jpg",
+          tags: ["PRD", "Process Flow", "AI SaaS"],
+        },
+        ovaltine: {
+          title: "Ovaltine — Loyalty & Gamification",
+          meta: "Estuary Solutions · Mar – May 2026",
+          img: "img/case-ovaltine.jpg",
+          tags: ["BRD", "Gamification", "Figma", "UAT"],
+        },
+        davipharm: {
+          title: "Davipharm — SalesTech",
+          meta: "Estuary Solutions · Mar – May 2026",
+          img: "img/case-davipharm.jpg",
+          tags: ["BRD", "SalesTech", "Wireframes"],
+        },
+        elearning: {
+          title: "E-Learning Platform",
+          meta: "Estuary Solutions · Mar – May 2026",
+          img: "img/case-elearning.jpg",
+          tags: ["BRD", "Figma", "UAT", "Go-Live"],
+        },
+        "road-quality": {
+          title: "Road Quality Warning System",
+          meta: "Graduation thesis · Dec 2025 · Scored 9.0/10",
+          img: "img/case-road-quality.jpg",
+          tags: [
+            "Machine Learning",
+            "Microservices",
+            "Figma",
+            "Use Case Modeling",
+          ],
+        },
+        "circle-banking": {
+          title: "Circle Banking App",
+          meta: "Practice project · May 2025",
+          img: "img/case-circle-banking.jpg",
+          tags: ["FSD", "BPMN", "Wireframes", "Business Rules"],
+        },
+        "pet-shop": {
+          title: "UI/UX Design — Pet Shop Website",
+          meta: "UI/UX design project · Dec 2024",
+          img: "img/case-pet-shop.jpg",
+          tags: [
+            "User Research",
+            "Figma",
+            "Usability Testing",
+            "Design System",
+          ],
+        },
+        "env-monitoring": {
+          title: "Environmental Quality Monitoring System",
+          meta: "Website · Apr 2024",
+          img: "img/Env.png",
+          tags: [
+            "Dashboard",
+            "API Integration",
+            "Wireframes",
+            "Data Visualization",
+          ],
+        },
+      };
 
-<footer class="footer">
-  <div class="wrap">
-    <p class="eyebrow">// end of document</p>
-    <h2>Let's talk about a Business Analyst role.</h2>
-    <div class="footer-contact">
-      <a class="btn btn-primary" href="mailto:tnthu.78@gmail.com">Email tnthu.78@gmail.com</a>
-      <a class="btn btn-ghost" style="border-color:#EFEDE3; color:#EFEDE3;" href="tel:+84907464382">Call (+84) 907 464 382</a>
-    </div>
-    <div class="footer-links">
-      <a href="https://linkedin.com/in/tnthu78" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8.24h4V23h-4zM8.5 8.24h3.83v2.01h.05c.53-1 1.84-2.06 3.79-2.06 4.06 0 4.81 2.67 4.81 6.14V23h-4v-6.75c0-1.61-.03-3.68-2.24-3.68-2.25 0-2.6 1.75-2.6 3.56V23h-4z"/></svg>
-        linkedin.com/in/tnthu78
-      </a>
-      <a href="https://github.com/thainhatthu" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.08 1.83 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3z"/></svg>
-        github.com/thainhatthu
-      </a>
-    </div>
-    <div class="footer-bottom">
-      <span>CV/BA-THU — REV.2026.07</span>
-      <span>Built as a portfolio draft — swap photos, links, and copy as needed.</span>
-    </div>
-  </div>
-</footer>
+      function openProjectModal(key) {
+        var p = PROJECTS[key];
+        if (!p) return;
 
-<script>
-  // Mobile nav toggle (simple show/hide, kept minimal)
-  document.addEventListener('DOMContentLoaded', function () {
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var img = document.getElementById("modalImg");
+        var fallback = document.getElementById("modalImgFallback");
+        img.style.display = "block";
+        fallback.style.display = "none";
+        img.src = p.img;
+        img.alt = p.title + " case study";
+        document.getElementById("modalImgPath").textContent = p.img;
 
-    // Scroll reveal
-    var revealEls = document.querySelectorAll('.flow-node, .exp-item, .proj-card');
-    if ('IntersectionObserver' in window && !reduceMotion) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            io.unobserve(entry.target);
-          }
+        document.getElementById("modalTitle").textContent = p.title;
+        document.getElementById("modalMeta").textContent = p.meta;
+
+        var tagsWrap = document.getElementById("modalTags");
+        tagsWrap.innerHTML = "";
+        p.tags.forEach(function (tag) {
+          var span = document.createElement("span");
+          span.className = "tag-chip";
+          span.textContent = tag;
+          tagsWrap.appendChild(span);
         });
-      }, { threshold: 0.15 });
-      revealEls.forEach(function (el) { io.observe(el); });
-    } else {
-      revealEls.forEach(function (el) { el.classList.add('in-view'); });
-    }
-  });
-</script>
 
-</body>
+        document.getElementById("modalScroll").scrollTop = 0;
+        var overlay = document.getElementById("modalOverlay");
+        overlay.classList.add("open");
+        document.body.classList.add("modal-locked");
+        document.getElementById("modalClose").focus();
+      }
+
+      function closeProjectModal() {
+        document.getElementById("modalOverlay").classList.remove("open");
+        document.body.classList.remove("modal-locked");
+      }
+
+      // Mobile nav toggle (simple show/hide, kept minimal)
+      document.addEventListener("DOMContentLoaded", function () {
+        var navtoggle = document.getElementById("navtoggle");
+        var mobileMenu = document.getElementById("mobileMenu");
+        if (navtoggle && mobileMenu) {
+          navtoggle.addEventListener("click", function () {
+            var isOpen = mobileMenu.classList.toggle("open");
+            navtoggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+          });
+          mobileMenu.querySelectorAll("a").forEach(function (a) {
+            a.addEventListener("click", function () {
+              mobileMenu.classList.remove("open");
+              navtoggle.setAttribute("aria-expanded", "false");
+            });
+          });
+        }
+
+        // Project case-study modal wiring
+        document.querySelectorAll(".case-btn").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            openProjectModal(btn.getAttribute("data-project"));
+          });
+        });
+        document
+          .getElementById("modalClose")
+          .addEventListener("click", closeProjectModal);
+        document
+          .getElementById("modalOverlay")
+          .addEventListener("click", function (e) {
+            if (e.target === this) closeProjectModal();
+          });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") closeProjectModal();
+        });
+
+        var reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        // Scroll reveal
+        var revealEls = document.querySelectorAll(
+          ".flow-node, .exp-item, .proj-card",
+        );
+        if ("IntersectionObserver" in window && !reduceMotion) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("in-view");
+                  io.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.15 },
+          );
+          revealEls.forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          revealEls.forEach(function (el) {
+            el.classList.add("in-view");
+          });
+        }
+      });
+    </script>
+  </body>
 </html>
