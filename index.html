@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thai Nhat Thu — IT Business Analyst</title>
+    <title>Thai Nhat Thu — Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -606,7 +606,7 @@
       }
       .proj-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 26px;
       }
       @media (max-width: 760px) {
@@ -621,6 +621,7 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        min-width: 0;
         opacity: 0;
         transform: translateY(16px);
         transition:
@@ -956,6 +957,23 @@
         background: var(--paper-deep);
         color: var(--ink);
       }
+      .skill-logo-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12.5px;
+        padding: 5px 10px;
+        border-radius: 7px;
+        background: var(--paper-deep);
+        color: var(--ink);
+      }
+      .skill-logo-chip img {
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
+        flex-shrink: 0;
+        border-radius: 3px;
+      }
 
       /* ---------- EDUCATION ---------- */
       .edu-card {
@@ -965,6 +983,32 @@
         padding: 28px 30px;
         display: grid;
         gap: 16px;
+      }
+      .edu-top {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .edu-logo {
+        flex-shrink: 0;
+        width: 56px;
+        height: 56px;
+        border-radius: 10px;
+        background: #ffffff;
+        border: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .edu-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 6px;
+      }
+      .edu-top-text {
+        min-width: 0;
       }
       .edu-top h3 {
         font-family: var(--font-display);
@@ -1138,7 +1182,7 @@
         </div>
         <div class="hero-grid">
           <div class="hero-main">
-            <p class="eyebrow">IT Business Analyst</p>
+            <p class="eyebrow">IT Business Analyst| Product Owner</p>
             <h1 class="name">Thai Nhat Thu</h1>
             <p class="objective">
               1+ year of experience across product and outsourcing environments,
@@ -1740,8 +1784,8 @@
               >Business analysis
             </div>
             <div class="skill-chips">
-              <span class="skill-chip">Impact Analysis</span
-              ><span class="skill-chip">GAP Analysis</span>
+              <span class="skill-chip">Backlog Management</span
+              >
               <span class="skill-chip">BRD/SRS/FRS</span
               ><span class="skill-chip">BPMN</span>
               <span class="skill-chip">UML</span
@@ -1750,6 +1794,7 @@
               >
               <span class="skill-chip">Stakeholder Mgmt</span
               ><span class="skill-chip">Change Request Mgmt</span>
+              <span class="skill-chip">UAT</span>
             </div>
           </div>
           <div class="skill-box">
@@ -1795,6 +1840,17 @@
               ><span class="skill-chip">MS Visio</span>
             </div>
           </div>
+      <div class="skill-box">
+            <div class="legend-key">
+              <span class="legend-dot" style="background: var(--amber)"></span
+              >Programming
+            </div>
+            <div class="skill-chips">
+              <span class="skill-chip">SQL</span
+              ><span class="skill-chip">React Native</span>
+              <span class="skill-chip">HTML/CSS</span>
+            </div>
+          </div>          
           <div class="skill-box">
             <div class="legend-key">
               <span class="legend-dot" style="background: var(--ink)"></span
@@ -1820,13 +1876,18 @@
         </div>
         <div class="edu-card">
           <div class="edu-top">
-            <h3>
-              University of Information Technology — Vietnam National University
-              (VNU)
-            </h3>
-            <p>
-              Bachelor's degree, Computer Networks &amp; Data Communications
-            </p>
+            <div class="edu-logo">
+              <img src="img/Logo_UIT.png" alt="" onerror="this.closest('.edu-logo').style.display='none';">
+            </div>
+            <div class="edu-top-text">
+              <h3>
+                University of Information Technology — Vietnam National University
+                (VNU)
+              </h3>
+              <p>
+                Bachelor's degree, Computer Networks &amp; Data Communications
+              </p>
+            </div>
           </div>
           <div class="edu-meta">
             <div>
@@ -1855,7 +1916,6 @@
 
     <footer class="footer">
       <div class="wrap">
-        <h2>Let's talk about a Business Analyst role.</h2>
         <div class="footer-contact">
           <a class="btn btn-primary" href="mailto:tnthu.78@gmail.com"
             >Email tnthu.78@gmail.com</a
